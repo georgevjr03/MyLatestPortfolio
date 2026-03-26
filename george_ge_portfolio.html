@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>George Varughese — GE Aerospace ECT Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f9fb;--white:#ffffff;--dark:#0a0e1a;--panel:#f0f3f8;--border:#dce3ef;
+  --ge-blue:#003087;--ge-sky:#0066cc;--ge-light:#e8f0fb;
+  --text:#1a2340;--muted:#6b7c99;--accent:#ff6b00;
+  --bb:'Bebas Neue',sans-serif;--inter:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--inter);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(0,48,135,.97);backdrop-filter:blur(12px)}
+.nav-logo{font-family:var(--bb);font-size:20px;letter-spacing:3px;color:#fff}
+.nav-logo span{color:#ff6b00}
+.nav-links{display:flex;gap:32px}.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:rgba(255,255,255,.55);text-decoration:none;text-transform:uppercase;transition:color .2s}.nav-links a:hover{color:#fff}
+.nav-badge{font-family:var(--mono);font-size:10px;letter-spacing:2px;padding:4px 12px;border:1px solid rgba(255,107,0,.6);color:#ff6b00;background:rgba(255,107,0,.08)}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--dark);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;padding-top:58px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 40%,rgba(0,102,204,.12) 0%,transparent 70%),radial-gradient(ellipse 50% 70% at 10% 80%,rgba(255,107,0,.06) 0%,transparent 60%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%)}
+
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 40px 80px 64px;position:relative;z-index:2}
+.hero-left::after{content:'';position:absolute;right:0;top:15%;bottom:15%;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.12),transparent)}
+
+.h-tag{font-family:var(--mono);font-size:10px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fu .7s ease both}
+.h-name{font-family:var(--bb);font-size:clamp(54px,5.5vw,86px);line-height:.95;color:#fff;margin-bottom:12px;letter-spacing:2px;opacity:0;animation:fu .7s .1s ease both}
+.h-name span{color:#ff6b00}
+.h-role{font-family:var(--inter);font-size:clamp(14px,1.5vw,18px);font-weight:300;color:rgba(255,255,255,.5);margin-bottom:40px;letter-spacing:.5px;opacity:0;animation:fu .7s .2s ease both}
+.h-bio{font-family:var(--inter);font-size:15px;line-height:1.8;color:rgba(255,255,255,.7);font-weight:300;max-width:500px;margin-bottom:44px;opacity:0;animation:fu .7s .3s ease both}
+.h-bio strong{color:#fff;font-weight:500}
+.h-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fu .7s .4s ease both}
+.btn-solid{padding:12px 26px;background:#ff6b00;color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-decoration:none;font-weight:500;text-transform:uppercase;transition:background .2s,transform .2s;display:inline-block}.btn-solid:hover{background:#e05a00;transform:translateY(-2px)}
+.btn-ghost{padding:12px 26px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-family:var(--mono);font-size:11px;letter-spacing:2px;text-decoration:none;text-transform:uppercase;transition:border-color .2s,color .2s,transform .2s;display:inline-block}.btn-ghost:hover{border-color:#ff6b00;color:#ff6b00;transform:translateY(-2px)}
+
+.hero-right{display:flex;flex-direction:column;justify-content:center;padding:80px 64px 80px 40px;gap:18px;position:relative;z-index:2;opacity:0;animation:fu .7s .5s ease both}
+.h-stat{padding:22px 26px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);position:relative;overflow:hidden}
+.h-stat::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
+.h-stat-n{font-family:var(--bb);font-size:44px;color:#fff;letter-spacing:1px;line-height:1}.h-stat-n span{color:#ff6b00}
+.h-stat-l{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:2px}
+.h-stat-d{font-family:var(--inter);font-size:13px;color:rgba(255,255,255,.55);margin-top:6px;font-weight:300}
+
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.3);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2}
+.scl{width:1px;height:36px;background:linear-gradient(to bottom,rgba(255,107,0,.7),transparent);animation:scrl 2s ease infinite}
+@keyframes scrl{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+.sec{max-width:1200px;margin:0 auto;padding:90px 48px}
+.s-tag{font-family:var(--mono);font-size:10px;letter-spacing:4px;color:var(--ge-sky);text-transform:uppercase;margin-bottom:12px}
+.s-title{font-family:var(--bb);font-size:clamp(32px,4vw,56px);letter-spacing:1px;color:var(--dark);margin-bottom:52px;line-height:1}
+.s-title span{color:var(--ge-sky)}
+
+/* GE PASSION */
+#passion{background:var(--dark);padding:0}
+.passion-inner{max-width:1200px;margin:0 auto;padding:90px 48px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.passion-quote{font-family:var(--bb);font-size:clamp(22px,3vw,40px);line-height:1.15;letter-spacing:1px;color:#fff;margin-bottom:28px}
+.passion-quote .hl{color:#ff6b00}
+.passion-body{font-family:var(--inter);font-size:15px;line-height:1.85;color:rgba(255,255,255,.65);font-weight:300}
+.passion-body strong{color:#fff;font-weight:500}
+.engine-cards{display:flex;flex-direction:column;gap:16px}
+.ec{padding:24px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);position:relative;overflow:hidden;transition:border-color .3s}.ec:hover{border-color:rgba(255,107,0,.5)}
+.ec::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#ff6b00,transparent)}
+.ec-model{font-family:var(--bb);font-size:24px;letter-spacing:2px;color:#ff6b00;margin-bottom:4px}
+.ec-sub{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:10px}
+.ec-desc{font-family:var(--inter);font-size:13px;line-height:1.65;color:rgba(255,255,255,.6);font-weight:300}
+
+/* EXPERIENCE TIMELINE */
+.tl{padding-left:40px;position:relative}
+.tl::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:linear-gradient(to bottom,var(--ge-blue),var(--border),transparent)}
+.tli{position:relative;margin-bottom:44px;opacity:0;transform:translateX(-16px);transition:opacity .55s ease,transform .55s ease}
+.tli.vis{opacity:1;transform:translateX(0)}
+.tl-dot{position:absolute;left:-44px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--ge-sky);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--ge-sky)}
+.tl-d{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--ge-sky);margin-bottom:6px;text-transform:uppercase}
+.tl-r{font-family:var(--inter);font-size:19px;font-weight:600;color:var(--dark);margin-bottom:4px}
+.tl-c{font-family:var(--inter);font-size:15px;font-style:italic;color:var(--muted);margin-bottom:12px}
+.tl-p{font-family:var(--inter);font-size:14px;line-height:1.75;color:var(--text);font-weight:300;max-width:680px}
+.tl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.ttag{padding:3px 10px;border:1px solid var(--border);font-family:var(--mono);font-size:9px;letter-spacing:1.5px;color:var(--muted)}
+
+/* PROJECTS */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pc{background:var(--white);border:1px solid var(--border);padding:28px;position:relative;overflow:hidden;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease,box-shadow .3s}
+.pc.vis{opacity:1;transform:translateY(0)}.pc:hover{box-shadow:0 4px 24px rgba(0,48,135,.08);border-color:var(--ge-sky)}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--ge-blue),var(--ge-sky));transform:scaleX(0);transform-origin:left;transition:transform .3s}.pc:hover::before{transform:scaleX(1)}
+.pc-n{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:14px}
+.pc-t{font-family:var(--inter);font-size:16px;font-weight:600;color:var(--dark);margin-bottom:10px;line-height:1.3}
+.pc-d{font-family:var(--inter);font-size:13px;line-height:1.7;color:var(--text);font-weight:300;margin-bottom:16px}
+.pc-tech{display:flex;flex-wrap:wrap;gap:5px}.pc-tag{font-family:var(--mono);font-size:9px;padding:2px 8px;background:var(--ge-light);border:1px solid rgba(0,102,204,.2);color:var(--ge-sky)}
+
+/* SKILLS */
+.sk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.sk-card{background:var(--white);border:1px solid var(--border);padding:20px;border-top:3px solid var(--ge-blue)}
+.sk-cat{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--ge-sky);text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.sk-item{font-family:var(--inter);font-size:13px;color:var(--text);padding:5px 0;border-bottom:1px solid var(--panel);font-weight:300}
+
+/* DATA DASHBOARD DEMO */
+#dashboard{background:var(--dark);padding:0}
+.dash-inner{max-width:1200px;margin:0 auto;padding:90px 48px}
+.dash-header{margin-bottom:40px}
+.dash-explain{font-family:var(--inter);font-size:14px;color:rgba(255,255,255,.5);max-width:600px;margin-top:12px;line-height:1.7}
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.d-kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:20px;position:relative;overflow:hidden}
+.d-kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.kpi-g::before{background:#10b981}.kpi-b::before{background:#3b82f6}.kpi-a::before{background:#ff6b00}.kpi-r::before{background:#ef4444}
+.d-kpi-v{font-family:var(--bb);font-size:36px;letter-spacing:1px;color:#fff}
+.d-kpi-l{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-top:2px}
+.d-kpi-sub{font-family:var(--inter);font-size:12px;color:rgba(255,255,255,.45);margin-top:6px}
+.dash-bottom{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+.d-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:22px}
+.d-panel-t{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:16px}
+.d-chart{display:flex;align-items:flex-end;gap:5px;height:100px}
+.d-bar-g{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.d-bar{width:100%;border-radius:2px 2px 0 0;transition:height .6s ease}
+.d-bar-l{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.3)}
+.d-fleet-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.d-fleet-name{font-family:var(--inter);font-size:13px;color:rgba(255,255,255,.7)}
+.d-fleet-eng{font-family:var(--mono);font-size:11px;color:#ff6b00}
+.d-fleet-status{font-family:var(--mono);font-size:9px;letter-spacing:1px;padding:2px 8px}
+.st-ok{background:rgba(16,185,129,.1);color:#10b981;border:1px solid #10b981}
+.st-warn{background:rgba(255,107,0,.1);color:#ff6b00;border:1px solid #ff6b00}
+
+/* CONTACT */
+#contact{padding:90px 48px;text-align:center;position:relative;max-width:1200px;margin:0 auto}
+.ct-title{font-family:var(--bb);font-size:clamp(36px,5vw,72px);letter-spacing:2px;color:var(--dark);margin-bottom:16px}
+.ct-sub{font-family:var(--inter);font-size:17px;color:var(--muted);margin-bottom:48px}
+.ct-row{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-bottom:40px}
+.ct-l{font-family:var(--mono);font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.ct-v{font-family:var(--inter);font-size:17px;color:var(--text)}.ct-v a{color:var(--text);text-decoration:none;transition:color .2s}.ct-v a:hover{color:var(--ge-sky)}
+
+footer{background:var(--dark);padding:24px 48px;display:flex;justify-content:space-between;align-items:center}
+.fn{font-family:var(--bb);font-size:14px;letter-spacing:2px;color:rgba(255,255,255,.4)}
+.fc{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.25)}
+
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr}.hero-right{display:none}
+  .passion-inner{grid-template-columns:1fr}.sk-grid{grid-template-columns:1fr 1fr}
+  .pg{grid-template-columns:1fr}.dash-grid{grid-template-columns:1fr 1fr}
+  .dash-bottom{grid-template-columns:1fr}nav{padding:0 20px}.nav-links{display:none}
+  .sec,.dash-inner,.passion-inner,#contact{padding:60px 20px}.hero-left{padding:80px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">GV<span>.</span></div>
+  <div class="nav-links">
+    <a href="#passion">Aviation</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-badge">GE AEROSPACE ECT APPLICATION</div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="h-tag">Early Career Trainee · Aviation Systems Engineering · R5031397</div>
+    <div class="h-name">George<br><span>Varughese.</span></div>
+    <div class="h-role">Engineer who grew up watching engines. Ready to build inside them.</div>
+    <div class="h-bio">I have followed <strong>GE Aerospace engine programmes</strong> since university — the GE9X, LEAP, GEnx, CF6. Not because I had to. Because I find it genuinely fascinating. I bring AWS-certified cloud skills, production data analytics, and enterprise dashboard experience to this programme — alongside an obsession with aviation that is very much personal.</div>
+    <div class="h-btns">
+      <a href="#dashboard" class="btn-solid">See Dashboard Demo</a>
+      <a href="#contact" class="btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="h-stat">
+      <div class="h-stat-n">40<span>%</span></div>
+      <div class="h-stat-l">Reporting overhead reduced</div>
+      <div class="h-stat-d">Dashboard & data integration work delivered for UAE government clients</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-n">7<span>×</span></div>
+      <div class="h-stat-l">System performance improvement</div>
+      <div class="h-stat-d">End-to-end data pipeline optimisation and reliability restoration</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-n">4<span>+</span></div>
+      <div class="h-stat-l">Countries worked in</div>
+      <div class="h-stat-d">UAE, Saudi Arabia, Sweden, USA — cross-cultural collaboration from day one</div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scl"></div>SCROLL</div>
+</section>
+
+<!-- GE PASSION -->
+<section id="passion" style="background:var(--dark);padding:0">
+  <div class="passion-inner">
+    <div>
+      <div class="s-tag" style="color:#ff6b00">// Aviation Passion</div>
+      <div class="passion-quote">The only company that could make me <span class="hl">more excited</span> about jet engines is the one that <span class="hl">builds them.</span></div>
+      <div class="passion-body">
+        I have followed GE Aerospace's engine programmes closely for years — not as a career strategy, but because I find the engineering genuinely extraordinary. The thermodynamic cycles, the materials science behind thermal barrier coatings, the mechanical elegance of a multi-stage compressor — these are things I read about because I want to, not because someone assigned them.<br><br>
+        I followed the <strong>GE9X certification programme</strong> for the Boeing 777X milestone by milestone. I understand why the composite fan blades represent a step-change in efficiency. I have read about the LEAP-1A development cycle and the challenge of achieving the bypass ratio targets within an existing nacelle envelope. The <strong>GEnx powering the 787 Dreamliner</strong> is a personal favourite — the architecture that proved composite aerostructures and high-bypass turbofans could redefine long-haul economics at the same time.<br><br>
+        The ECT programme at GE Aerospace is not a job application for me. It is the most direct path I can imagine to learning this field from the inside.
+      </div>
+    </div>
+    <div class="engine-cards">
+      <div class="ec">
+        <div class="ec-model">GE9X</div>
+        <div class="ec-sub">Boeing 777X · Programme I follow most closely</div>
+        <div class="ec-desc">Composite fan blades, highest bypass ratio in GE history, 3D-woven CMC turbine components. The engine I have tracked from first test run to certification. A generational achievement in propulsion.</div>
+      </div>
+      <div class="ec">
+        <div class="ec-model">LEAP-1A/B</div>
+        <div class="ec-sub">A320neo · 737 MAX</div>
+        <div class="ec-desc">CFM's answer to next-generation narrowbody efficiency. Twin-spool, high-bypass, advanced 3D aerodynamic blades. Powers the aircraft that dominate short-haul operations in every market.</div>
+      </div>
+      <div class="ec">
+        <div class="ec-model">GEnx</div>
+        <div class="ec-sub">Boeing 787 Dreamliner</div>
+        <div class="ec-desc">The engine that validated composite aerostructures and high-bypass turbofan performance together. The 787's economics would not exist without the GEnx family's specific fuel consumption targets.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD DEMO -->
+<section id="dashboard" style="background:var(--dark);padding:0">
+  <div class="dash-inner">
+    <div class="dash-header">
+      <div class="s-tag" style="color:#ff6b00">// Live Dashboard Demo</div>
+      <div class="s-title" style="color:#fff;margin-bottom:8px">Fleet <span style="color:#ff6b00">Analytics</span></div>
+      <div class="dash-explain">A simulated commercial engine fleet management dashboard — the type of Spotfire/Salesforce environment the ECT role supports. Real-time KPIs, reliability tracking, and fleet status monitoring.</div>
+    </div>
+    <div class="dash-grid">
+      <div class="d-kpi kpi-g">
+        <div class="d-kpi-v">247</div>
+        <div class="d-kpi-l">Active Engines</div>
+        <div class="d-kpi-sub">MENA region fleet · all variants</div>
+      </div>
+      <div class="d-kpi kpi-b">
+        <div class="d-kpi-v">99.4<span style="font-size:20px">%</span></div>
+        <div class="d-kpi-l">Fleet Reliability</div>
+        <div class="d-kpi-sub">EGT margin within limits</div>
+      </div>
+      <div class="d-kpi kpi-a">
+        <div class="d-kpi-v" id="alertCount">3</div>
+        <div class="d-kpi-l">Open Alerts</div>
+        <div class="d-kpi-sub">Requires customer engagement</div>
+      </div>
+      <div class="d-kpi kpi-g">
+        <div class="d-kpi-v">18k</div>
+        <div class="d-kpi-l">Avg. EFC</div>
+        <div class="d-kpi-sub">Engine flight cycles · fleet avg</div>
+      </div>
+    </div>
+    <div class="dash-bottom">
+      <div class="d-panel">
+        <div class="d-panel-t">Monthly Reliability Events — Last 12 Months</div>
+        <div class="d-chart" id="reliChart"></div>
+      </div>
+      <div class="d-panel">
+        <div class="d-panel-t">Active Fleet — Engine Models</div>
+        <div id="fleetTable"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<div id="experience" class="sec">
+  <div class="s-tag">// Experience</div>
+  <div class="s-title">Where I've <span>Delivered</span></div>
+  <div class="tl">
+    <div class="tli">
+      <div class="tl-dot"></div>
+      <div class="tl-d">May 2025 – Present</div>
+      <div class="tl-r">Technical Staff Member — Field Operations & Data Analytics</div>
+      <div class="tl-c">Reach Group · Dubai, UAE</div>
+      <div class="tl-p">Created and managed operational dashboards integrating data from multiple enterprise databases — generating actionable insights for government-sector clients across the UAE. Supported process improvement initiatives including SOP updates and corrective action planning. Delivered a 7× system performance improvement and reduced reporting overhead by 40%. Managed concurrent client relationships across UAE and Saudi Arabia with zero missed commitments.</div>
+      <div class="tl-tags"><span class="ttag">POWER BI</span><span class="ttag">DATA INTEGRATION</span><span class="ttag">SOPs</span><span class="ttag">RELIABILITY ANALYSIS</span><span class="ttag">DASHBOARDS</span></div>
+    </div>
+    <div class="tli">
+      <div class="tl-dot"></div>
+      <div class="tl-d">Oct 2025 – Present</div>
+      <div class="tl-r">Critical Systems Support Engineer</div>
+      <div class="tl-c">Emdad Human Resources Company · Riyadh, KSA (Remote)</div>
+      <div class="tl-p">Sole engineer on a live government system failure — 500+ active records, zero documentation. Diagnosed root cause, rebuilt from scratch, restored full integrity in 6 weeks with zero service disruption. Produced comprehensive technical documentation and handover materials. Demonstrates the problem-solving, accountability, and documentation discipline the ECT programme expects to develop.</div>
+      <div class="tl-tags"><span class="ttag">PYTHON</span><span class="ttag">ROOT CAUSE ANALYSIS</span><span class="ttag">DOCUMENTATION</span><span class="ttag">KSA</span></div>
+    </div>
+    <div class="tli">
+      <div class="tl-dot"></div>
+      <div class="tl-d">Jun 2024 – Apr 2025</div>
+      <div class="tl-r">AI Systems Engineer</div>
+      <div class="tl-c">Maura (MIT-Founded Startup) · UAE (Hybrid)</div>
+      <div class="tl-p">Built production AI systems including Graph RAG and novel ML models with no existing precedent. One of the first engineers working on Graph RAG technology. Conducted theoretical research and translated findings into deployed products — demonstrating the self-teaching agility and learning hunger GE Aerospace identifies as desired characteristics.</div>
+      <div class="tl-tags"><span class="ttag">PYTHON</span><span class="ttag">GRAPH RAG</span><span class="ttag">ML SYSTEMS</span><span class="ttag">MIT STARTUP</span></div>
+    </div>
+    <div class="tli">
+      <div class="tl-dot"></div>
+      <div class="tl-d">2023 – 2024</div>
+      <div class="tl-r">Software Developer — iOS, Android, Full-Stack</div>
+      <div class="tl-c">Chamberly (Sweden) · Variant Labs (USA) · Linumiz (Germany)</div>
+      <div class="tl-p">Three international roles across three continents — iOS with SwiftUI + ARKit + PoseNet ML (Sweden), production iOS app in US engineering team (California), Android BLE + NLP (Berlin). Built across cultures, time zones, and technical stacks without losing delivery quality.</div>
+      <div class="tl-tags"><span class="ttag">SWIFT</span><span class="ttag">ANDROID</span><span class="ttag">CROSS-CULTURAL</span><span class="ttag">MULTI-COUNTRY</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" class="sec" style="padding-top:0">
+  <div class="s-tag">// Projects</div>
+  <div class="s-title">What I've <span>Built</span></div>
+  <div class="pg">
+    <div class="pc"><div class="pc-n">001</div><div class="pc-t">Fleet Analytics Dashboard</div><div class="pc-d">Simulated GE-style engine fleet management dashboard — reliability KPIs, event tracking, fleet status monitoring. Built to demonstrate Spotfire/Salesforce-equivalent dashboard skills for the ECT role.</div><div class="pc-tech"><span class="pc-tag">DATA VIZ</span><span class="pc-tag">DASHBOARDS</span><span class="pc-tag">KPI TRACKING</span></div></div>
+    <div class="pc"><div class="pc-n">002</div><div class="pc-t">Graph RAG Task Manager</div><div class="pc-d">Production AI system at Maura (MIT startup). Graph-based retrieval over unstructured enterprise data — one of the earliest real-world Graph RAG deployments. Not a demo. An active product used by real users.</div><div class="pc-tech"><span class="pc-tag">GRAPH RAG</span><span class="pc-tag">PYTHON</span><span class="pc-tag">LLM</span></div></div>
+    <div class="pc"><div class="pc-n">003</div><div class="pc-t">Face Recognition Attendance System</div><div class="pc-d">Python + OpenCV + Firebase. Real-time biometric detection, ML identity matching, live attendance marking. End-to-end data pipeline from sensor input to database output.</div><div class="pc-tech"><span class="pc-tag">PYTHON</span><span class="pc-tag">OPENCV</span><span class="pc-tag">FIREBASE</span></div></div>
+    <div class="pc"><div class="pc-n">004</div><div class="pc-t">SLAM Robotics Simulation</div><div class="pc-d">ROS + Gazebo + LiDAR camera. SLAM algorithm for autonomous path planning. Sensor fusion between camera and IMU. Applied 3D sensing and spatial intelligence research.</div><div class="pc-tech"><span class="pc-tag">ROS</span><span class="pc-tag">SLAM</span><span class="pc-tag">PYTHON</span><span class="pc-tag">3D SENSING</span></div></div>
+    <div class="pc"><div class="pc-n">005</div><div class="pc-t">Interactive Chat Web App</div><div class="pc-d">React.js frontend with MongoDB backend. Real-time messaging, user profiles, seamless UX. Full-stack production deployment demonstrating front-end development skills.</div><div class="pc-tech"><span class="pc-tag">REACT.JS</span><span class="pc-tag">MONGODB</span><span class="pc-tag">FULL-STACK</span></div></div>
+    <div class="pc"><div class="pc-n">006</div><div class="pc-t">ThreatScope Cybersecurity Dashboard</div><div class="pc-d">Live threat intelligence feed, adversary origin map, working cryptography demo. All algorithms running in JavaScript. Demonstrates dashboard design and data visualisation capability.</div><div class="pc-tech"><span class="pc-tag">HTML/JS</span><span class="pc-tag">DATA VIZ</span><span class="pc-tag">CRYPTOGRAPHY</span></div></div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="sec" style="padding-top:0">
+  <div class="s-tag">// Skills</div>
+  <div class="s-title">Technical <span>Toolkit</span></div>
+  <div class="sk-grid">
+    <div class="sk-card">
+      <div class="sk-cat">Data & Dashboards</div>
+      <div class="sk-item">Power BI</div><div class="sk-item">Excel (Advanced)</div><div class="sk-item">SQL</div><div class="sk-item">Python (pandas)</div><div class="sk-item">Firebase</div><div class="sk-item">REST APIs</div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-cat">Office & Productivity</div>
+      <div class="sk-item">Microsoft Office Suite</div><div class="sk-item">Outlook & SharePoint</div><div class="sk-item">JIRA</div><div class="sk-item">Git & GitHub</div><div class="sk-item">Azure DevOps</div><div class="sk-item">AWS (Certified)</div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-cat">Engineering & AI</div>
+      <div class="sk-item">Python</div><div class="sk-item">ML / AI Systems</div><div class="sk-item">Computer Vision</div><div class="sk-item">ROS / SLAM</div><div class="sk-item">Graph RAG</div><div class="sk-item">iOS / Android</div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-cat">Certifications</div>
+      <div class="sk-item">AWS Cloud Practitioner</div><div class="sk-item">Oxford ML Summer School</div><div class="sk-item">Harvard PAIR</div><div class="sk-item">Meta Android Dev</div><div class="sk-item">NIT Trichy CV Research</div><div class="sk-item">NCM Mathematics</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="s-tag">// Contact</div>
+  <div class="ct-title">Ready to Fly.</div>
+  <div class="ct-sub">Available immediately · Dubai-based · Own UAE visa · No relocation required</div>
+  <div class="ct-row">
+    <div><div class="ct-l">Email</div><div class="ct-v"><a href="mailto:georgevjr03@gmail.com">georgevjr03@gmail.com</a></div></div>
+    <div><div class="ct-l">Phone</div><div class="ct-v"><a href="tel:+971509382514">+971 50 938 2514</a></div></div>
+    <div><div class="ct-l">GitHub</div><div class="ct-v"><a href="https://github.com/georgevjr03" target="_blank">georgevjr03</a></div></div>
+    <div><div class="ct-l">Location</div><div class="ct-v">Dubai, UAE</div></div>
+  </div>
+  <a href="mailto:georgevjr03@gmail.com" class="btn-solid" style="font-size:13px;padding:14px 32px">Get In Touch</a>
+</div>
+
+<footer>
+  <div class="fn">GEORGE VARUGHESE</div>
+  <div class="fc">© 2026 · GE Aerospace ECT Application R5031397 · Built with genuine passion for aviation.</div>
+</footer>
+
+<script>
+// ── RELIABILITY CHART ──
+const months=['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
+const events=[8,6,11,7,9,5,4,7,6,3,5,4];
+const maxE=Math.max(...events);
+const rc=document.getElementById('reliChart');
+events.forEach((v,i)=>{
+  const g=document.createElement('div');g.className='d-bar-g';
+  const b=document.createElement('div');b.className='d-bar';
+  b.style.height='4px';
+  b.style.background=v>8?'#ef4444':v>6?'#ff6b00':'#10b981';
+  b.title=`${months[i]}: ${v} events`;
+  setTimeout(()=>{b.style.height=((v/maxE)*90)+'px'},200+i*50);
+  const l=document.createElement('div');l.className='d-bar-l';l.textContent=i%3===0?months[i]:'';
+  g.appendChild(b);g.appendChild(l);rc.appendChild(g);
+});
+
+// ── FLEET TABLE ──
+const fleet=[
+  {name:'Emirates',eng:'GE9X-105B1A',status:'ok'},
+  {name:'Air Arabia',eng:'LEAP-1A26',status:'ok'},
+  {name:'flydubai',eng:'LEAP-1B28',status:'warn'},
+  {name:'Saudia',eng:'GEnx-1B76',status:'ok'},
+  {name:'IndiGo',eng:'LEAP-1A32',status:'warn'},
+];
+const ft=document.getElementById('fleetTable');
+fleet.forEach(f=>{
+  const r=document.createElement('div');r.className='d-fleet-row';
+  r.innerHTML=`<span class="d-fleet-name">${f.name}</span><span class="d-fleet-eng">${f.eng}</span><span class="d-fleet-status ${f.status==='ok'?'st-ok':'st-warn'}">${f.status==='ok'?'STABLE':'REVIEW'}</span>`;
+  ft.appendChild(r);
+});
+
+// ── SCROLL REVEAL ──
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:.15});
+document.querySelectorAll('.tli,.pc').forEach((el,i)=>{el.style.transitionDelay=(i*.07)+'s';obs.observe(el)});
+
+// ── SMOOTH NAV ──
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+  });
+});
+
+// ── LIVE ALERT COUNTER ──
+let count=3;
+setInterval(()=>{
+  const el=document.getElementById('alertCount');
+  if(el&&Math.random()>.7){count=Math.max(1,count+(Math.random()>.5?1:-1));el.textContent=count}
+},4000);
+</script>
+</body>
+</html>
